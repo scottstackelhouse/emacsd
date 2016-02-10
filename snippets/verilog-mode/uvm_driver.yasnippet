@@ -1,0 +1,45 @@
+# -*- mode: snippet -*-
+# name: uvm_driver
+# key: driver
+# --
+
+class ${1:`(snip-buf-file-name-sans)`} extends uvm_driver #(${2:prefix}_transaction);
+
+  //---------------------------------------------------------------------------
+  // driver registration to UVM Factory
+  \`uvm_component_utils($2_${3:driver})
+  
+  //Attributes
+  virtual $2_interface                    m_$2_if; //interface for waveforms
+  uvm_analysis_port #($2_transaction)     m_$2_ap; //ap to send out transactions
+  $2_transaction                          m_$2_transaction; //convenience handle for transaction being processed
+
+  
+  //---------------------------------------------------------------------------
+  /*!
+   * \brief Constructor
+   *
+   */
+  function new(string name="$1", uvm_component parent);
+    super.new(name, parent);
+  endfunction: new
+
+  //---------------------------------------------------------------------------
+  /*!  \brief UVM Build Phase function
+   */
+  virtual function void build_phase(uvm_phase phase); super.build_phase(phase);
+  m_$2_ap = new("m_$2_ap", this); //instance our ap endfunction
+
+  endfunction
+  
+  //----------------------------------------------------
+  /*!  \brief UVM run_phase() method 
+   * 
+   */
+  virtual task run_phase(uvm_phase phase);
+
+    seq_item_port.get(m_$2_transaction);
+   
+  endtask: run_phase
+
+endclass: $1

@@ -1,0 +1,26 @@
+# -*- mode: snippet -*-
+# name: uvm agent package
+# key: agent_pkg
+# --
+package ${1:`(snip-buf-file-name-sans)`};
+
+  // UVM Package
+  import uvm_pkg::*;
+  \`include "uvm_macros.svh"
+
+  import hvm_sequence_item_pkg::*;
+
+  //agent constants
+
+  //agent typedefs
+
+  //Component includes
+  \`include "${2:agent_prefix}_transaction.sv"  
+  \`include "$2_sequencer.sv"
+  \`include "$2_coverage.sv"
+  \`include "$2_driver.sv"
+  \`include "$2_responder.sv"
+  \`include "$2_monitor.sv"
+  \`include "$2_agent.sv"
+
+endpackage

@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# name: uvm_sequencer
+# key: sequencer
+# --
+
+class ${1:`(snip-buf-file-name-sans)`} extends uvm_sequencer #(${2:transaction_name});
+
+  //---------------------------------------------------------------------------
+  // Sequencer registration to UVM Factory
+  \`uvm_component_utils($1)
+  
+  //---------------------------------------------------------------------------
+  /*!
+   * \brief Constructor
+   *
+   */
+  function new(string name="$1", uvm_component parent);
+    super.new(name, parent);
+  endfunction: new
+
+endclass: $1

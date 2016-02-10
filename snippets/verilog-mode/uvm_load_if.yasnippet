@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: uvm_db_get_if
+# key: uvm_load_if
+# --
+if(!uvm_config_db#(virtual ${1:interface_name})::get(this, "", "vif", m_${2:prefix}_if))
+  `uvm_fatal("`(snip-buf-file-name-sans)`::${3:what}_phase",{"Virtual interface not found"});
+

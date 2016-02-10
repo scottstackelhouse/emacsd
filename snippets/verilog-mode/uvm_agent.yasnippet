@@ -1,0 +1,68 @@
+# -*- mode: snippet -*-
+# name: uvm_agent
+# key: agent
+# --
+class ${1:`(snip-buf-file-name-sans)`} extends uvm_agent;
+
+  //! Factory registration macro
+  \`uvm_component_utils($1)
+
+  //! External pin interface
+  virtual ${2:agent_prefix}_interface m_$2_if;
+
+  //! Analysis port
+  uvm_analysis_port #($2_transaction) m_$2_ap;
+
+  //! Coverage 
+
+  //! Driver/Responder
+  //ie $2_driver    m_$2_driver;
+  $2_${3:driver}   m_$2_$3;
+
+  //! Sequencer
+  $2_sequencer  m_$2_sequencer;
+
+  //----------------------------------------------------
+  /*!
+  * \brief Class constructor
+  */
+  function new( string name   = "$1", uvm_component parent);
+      super.new(name, parent);
+  endfunction
+
+
+  //----------------------------------------------------
+  /*!
+  * \brief UVM Build Phase virtual function
+  */
+  virtual function void build_phase(uvm_phase phase);
+    //Create coverage, $3, sequencer, analysis port, etc..
+    m_$2_$3 = $2_$3::type_id::create("m_$2_$3",this);
+    m_$2_sequencer = $2_sequencer::type_id::create("m_$2_sequencer",this);
+    m_$2_ap        = new("m_$2_ap",this);
+  endfunction
+
+
+  //----------------------------------------------------
+  /*!
+  * \brief UVM Connect Phase virtual function
+  */
+  virtual function void connect_phase(uvm_phase phase);
+    //grab vif from config_db
+    if(!uvm_config_db#(virtual $2_interface)::get(this, "", "vif", m_$2_if))
+      \`uvm_fatal("$1::build_phase",{"Virtual interface must be set for: ",get_full_name(),".vif"});
+
+    // Connect the hierarchical interface
+    m_$2_$3.m_$2_if = m_$2_if;
+   
+    // Connect the hierarchical analysis port ($3's port to agent's port)
+    m_$2_$3.m_$2_ap.connect(m_$2_ap);
+
+    // Connect the $3's port to the coverage export
+
+    // Connect the $3's sequence port to the sequencer's export
+    m_$2_$3.seq_item_port.connect(m_$2_sequencer.seq_item_export);
+
+
+  endfunction
+endclass

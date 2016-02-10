@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: uvm_db_store_if
+# key: uvm_store_if
+# --
+uvm_config_db#(virtual ${1:interface_type})::set(uvm_root::get(),"*.m_${2:name}_agent", "vif", m_$2_if);

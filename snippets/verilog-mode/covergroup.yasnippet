@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: covergroup
+# key: covergroup
+# --
+covergroup ${1:some_cg};
+  option.per_instance = 1;
+  type_option.comment = "${2:Some Description Coverage Group}";
+  type_option.goal    = 100;
+  type_option.weight  = 1;
+
+  //cp here
+  $3
+
+endgroup;
+

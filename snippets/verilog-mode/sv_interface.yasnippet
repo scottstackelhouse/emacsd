@@ -1,0 +1,35 @@
+# -*- mode: snippet -*-
+# name: sv_interface
+# key: interface
+# --
+
+interface ${1:`(snip-buf-file-name-sans)`};
+  logic ${2:clk};
+  logic rst_n;
+  logic some_input;
+  logic some_output;
+
+  //! direction via modport
+
+  modport tb (input $2,
+              input rst_n,
+              input some_input,
+              output some_output
+              );
+
+
+  //----------------------------------------------------
+  /*!
+   * \brief  Clocking Block
+   *  The clocking block defines signal relationships with
+   *  the clock.
+   */
+  clocking cb @($2);
+    default input #1step output negedge;
+
+    input  some_input;
+    output some_output;
+  endclocking
+
+             
+endinterface

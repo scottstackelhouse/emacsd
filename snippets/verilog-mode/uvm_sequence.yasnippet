@@ -1,0 +1,45 @@
+# -*- mode: snippet -*-
+# name: uvm_sequence
+# key: sequence
+# --
+
+class ${1:`(snip-buf-file-name-sans)`} extends uvm_sequence #(${2:transaction_name},$2);
+
+  //---------------------------------------------------------------------------
+  // Sequence registration to UVM Factory
+  \`uvm_object_utils($1)
+
+  $2 req;
+  $2 rsp;
+
+  logic [31:0] address; //TBD Example Only
+  logic [31:0] data;  //TBD Example Only
+  
+  //---------------------------------------------------------------------------
+  /*!
+   * \brief Constructor
+   *
+   */
+  function new(string name="$1");
+    super.new(name);
+  endfunction: new
+
+
+  //---------------------------------------------------------------------------
+  /*!
+   * \brief Sequence body TBD EXAMPLE ONLY
+   */
+  task body();
+
+    req = $2::type_id::create("req");
+    start_item(req);
+    assert(req.randomize() with {
+      req.address == local::address;
+      } );
+    `uvm_info({get_type_name(),":body"},{"Sending transaction ",req.convert2string()}, UVM_MEDIUM)
+    finish_item(req);
+    get_response(rsp);
+    data = rsp.data; 
+  endtask: body
+
+endclass

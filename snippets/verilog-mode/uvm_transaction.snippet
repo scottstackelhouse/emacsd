@@ -1,0 +1,48 @@
+# -*- mode: snippet -*-
+# name: uvm_transaction
+# key: transaction
+# --
+
+//----------------------------------------------------
+/*!
+ * \brief 
+ *
+ * 
+ */
+class ${1:`(snip-buf-file-name-sans)`} extends hvm_sequence_item;
+
+  //! UVM Factory Registration Macro
+  \`uvm_object_utils($1)
+ 
+  //! Var declarations
+
+  //! Constraint declarations
+
+  //! Methods
+
+  //----------------------------------------------------
+  /*!
+   * \brief Constructor
+   * Standard uvm constructor  
+   */
+  function new(string name = "$1");
+    super.new(name);
+    //init signals and vars
+
+  endfunction: new
+
+  //***************************************************************************
+  /*!
+   * \brief convert2string function
+   *
+   * Return as a string the contents of this object.
+   */
+  function string convert2string();
+    string s;
+
+    s = super.convert2string(); //reuse super's string output
+    $sformat(s, "%s\n  $1:\n",s);
+    return(s);
+  endfunction: convert2string
+
+endclass: $1 

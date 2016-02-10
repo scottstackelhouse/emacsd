@@ -1,0 +1,48 @@
+# -*- mode: snippet -*-
+# name: register
+# key: register
+# --
+class ${1:`(snip-buf-file-name-sans)`} extends base_register;
+
+  //! Factory registration macro
+  \`uvm_component_utils($1)
+
+  //----------------------------------------------------
+  /*!
+  * \brief Class constructor
+  */
+  function new( string name   = "$1", uvm_component parent=null);
+      super.new(name, parent);
+      address = 0;
+      data = 0;
+  endfunction
+
+  //----------------------------------------------------
+  /*!
+  * \brief function to handle writes to this register
+  */
+  function void write(data_t data);
+    string s;     
+    notice_struct notification;
+
+    this.data = data;
+
+    s="\n$1:\n";
+
+    if (data[0] == 1)
+      $sformat(s,"%s bit zero is set\n",s);
+    else
+      $sformat(s,"$s bit zero is unset\n",s);
+
+    `uvm_info("::write",s,UVM_MEDIUM);
+
+    //send notification of write
+    notification.payload = 0; //placeholder
+    notification.address = address;
+    notification.data = data;
+    send_notifications(notification); //notify subscribers of write
+    
+  endfunction; 
+
+
+endclass

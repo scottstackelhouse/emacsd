@@ -1,0 +1,10 @@
+(setq inferior-lisp-program "/usr/local/bin/sbcl")
+(require 'slime)
+(slime-setup)
+(add-to-list 'slime-contribs 'slime-repl)
+(add-to-list 'slime-contribs 'slime-fancy)
+(require 'ac-slime)
+(add-hook 'slime-mode-hook 'set-up-slime-ac)
+(add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
+(eval-after-load "auto-complete"
+  '(add-to-list 'ac-modes '(slime-mode slime-repl-mode)))
