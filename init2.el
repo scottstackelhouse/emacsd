@@ -19,7 +19,7 @@
 
 (defvar my-packages '(
                       ac-cider
-                      ac-cider-complimenet
+                      ac-cider-compliment
                       auto-complete
                       cider
                       cider-decompile
