@@ -1,9 +1,5 @@
 ;; Emacs configuration entry point
 
-;; Based on stevendanna's emacs-config
-;; https://github.com/stevendanna/emacs-config
-(setq gc-cons-threshold 100000000)
-
 (require 'package)
 
 (add-to-list 'package-archives
@@ -19,12 +15,13 @@
 
 (defvar my-packages '(
                       ac-cider
+		      ac-slime
                       auto-complete
                       cider
                       cider-decompile
-                      cider-tracing
                       clojure-snippets
                       clojurescript-mode
+		      clj-refactor
                       ido-ubiquitous
                       ido-ubiquitous
                       json
@@ -34,6 +31,7 @@
                       paredit
                       php-mode
                       rainbow-delimiters
+		      slime
                       smex
                       undo-tree
                       yasnippet
