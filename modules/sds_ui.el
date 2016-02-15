@@ -1,3 +1,8 @@
+;; Remove uncessary UI elements
+(tool-bar-mode -1)
+(blink-cursor-mode -1)
+(setq inhibit-startup-screen t)
+
 ;; Theme
 (add-to-list 'custom-theme-load-path (concat emacs-dir "themes/"))
 ;(load-theme 'sds-colors t)
@@ -10,12 +15,13 @@
 
 ;; font
 (if (eq system-type 'darwin)
-    (set-face-attribute 'default nil :height 140 :family "Monaco")
-;;setup command key as meta
-(setq mac-option-key-is-meta nil
-mac-command-key-is-meta t
-mac-command-modifier 'meta
-mac-option-modifier 'none))
+    (progn 
+      (set-face-attribute 'default nil :height 140 :family "Monaco")
+      (setq mac-option-key-is-meta nil
+            mac-command-key-is-meta t
+            mac-command-modifier 'meta
+            mac-option-modifier 'none)
+      (toggle-frame-fullscreen)))
 
 (if (eq system-type 'gnu/linux)
     (set-face-attribute 'default nil :family "Lucida Sans Typewriter" :height 150 ))
@@ -24,10 +30,6 @@ mac-option-modifier 'none))
 
 
 
-;; Remove uncessary UI elements
-(tool-bar-mode -1)
-(blink-cursor-mode -1)
-(setq inhibit-startup-screen t)
 
 ;(menu-bar-mode -1)
 
