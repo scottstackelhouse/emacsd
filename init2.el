@@ -20,8 +20,9 @@
                       ac-slime
                       auto-complete
                       cider
-                      clojure-snippets
                       clj-refactor
+                      clojure-snippets
+                      exec-path-from-shell                      
                       ido-ubiquitous
                       json
                       json-mode
