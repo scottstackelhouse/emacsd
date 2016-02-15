@@ -3,10 +3,12 @@
 (require 'package)
 
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/") t)
+             '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+;uncomment to get alpha/beta packages
+;(add-to-list 'package-archives
+;             '("melpa" . "http://melpa.org/packages/") t)
+
 
 (package-initialize)
 
@@ -18,18 +20,14 @@
                       ac-slime
                       auto-complete
                       cider
-                      cider-decompile
                       clojure-snippets
-                      clojurescript-mode
                       clj-refactor
-                      ido-ubiquitous
                       ido-ubiquitous
                       json
                       json-mode
                       magit 
                       markdown-mode 
                       paredit
-                      php-mode
                       rainbow-delimiters
                       slime
                       smex
