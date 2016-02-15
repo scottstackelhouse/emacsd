@@ -1,5 +1,7 @@
 # emacsd
-relatively fast and moduler setup for emacs, works well (for me) on osx and linux. 
+Relatively fast and moduler setup for emacs, works well (for me) on osx and linux. 
+
+When you clone this, be sure to name the final destination as ".emacs.d" (sans quotes) in your home directory.
 
 #License
 Unless otherwise stated in a particular file, the following license applies
