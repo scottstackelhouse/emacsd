@@ -3,6 +3,8 @@ Relatively fast and modular setup for emacs, works well (for me) on osx and linu
 
 When you clone this, be sure to name the final destination as ".emacs.d" (sans quotes) in your home directory.
 
+Pull requests welcome.
+
 #License
 Unless otherwise stated in a particular file, the following license applies
 
