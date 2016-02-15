@@ -15,13 +15,13 @@
 
 (defvar my-packages '(
                       ac-cider
-		      ac-slime
+                      ac-slime
                       auto-complete
                       cider
                       cider-decompile
                       clojure-snippets
                       clojurescript-mode
-		      clj-refactor
+                      clj-refactor
                       ido-ubiquitous
                       ido-ubiquitous
                       json
@@ -31,7 +31,7 @@
                       paredit
                       php-mode
                       rainbow-delimiters
-		      slime
+                      slime
                       smex
                       undo-tree
                       yasnippet
